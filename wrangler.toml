@@ -1,0 +1,35 @@
+# wrangler.toml
+
+# Worker 的名称，将成为 URL 的一部分
+name = "my-collaborative-doc"
+
+# Worker 的主入口文件路径
+main = "src/worker.js"
+
+# 兼容性日期，确保 Worker 在一个可预测的环境中运行
+compatibility_date = "2023-10-26"
+
+# --- Durable Object 绑定定义 ---
+[[durable_objects.bindings]]
+# 在 worker.js 中，我们将通过 env.DOCUMENT_DO 来访问这个 Durable Object
+name = "DOCUMENT_DO" 
+# 这个绑定对应于在代码中导出的类的名称
+class_name = "DocumentDurableObject" 
+
+# --- Durable Object 迁移配置 ---
+[[migrations]]
+# 一个用于标识此次迁移的版本标签，可以是任意字符串
+tag = "v1" 
+# 使用 new_sqlite_classes 来创建基于 SQLite 的新存储
+new_sqlite_classes = ["DocumentDurableObject"]
+
+# --- 资源导入规则 ---
+[[rules]]
+type = "Text"
+globs = ["**/*.html"]
+fallthrough = false
+
+[[rules]]
+type = "Text"
+globs = ["**/*.txt"]
+fallthrough = true
