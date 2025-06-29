@@ -40,4 +40,4 @@
 
 部署后，通过访问 `https://<你的Worker地址>/<任意文档名>` 即可开始使用。
 
-作者：@yuanguangshan
+作者：[@yuanguangshan](https://github.com/yuanguangshan)
