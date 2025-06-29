@@ -1,7 +1,7 @@
 # wrangler.toml
 
 # Worker 的名称，将成为 URL 的一部分
-name = "my-collaborative-doc"
+name = "docs"
 
 # Worker 的主入口文件路径
 main = "src/worker.js"
